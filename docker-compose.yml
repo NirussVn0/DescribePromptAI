@@ -1,0 +1,63 @@
+# version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: promptframe-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      ENVIRONMENT: development
+      STORAGE_BACKEND: hybrid
+      DATABASE_URL: postgresql+psycopg://describe_prompt_ai:describe@postgres:5432/describe_prompt_ai
+      REDIS_URL: redis://redis:6379/0
+      # ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    command: >-   # Dùng shell form (an toàn hơn)
+      uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: promptframe-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    command: >-
+      npm run dev
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: promptframe-postgres
+    environment:
+      POSTGRES_DB: describe_prompt_ai
+      POSTGRES_USER: describe_prompt_ai
+      POSTGRES_PASSWORD: describe
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: promptframe-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
