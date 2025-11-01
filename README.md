@@ -94,5 +94,3 @@ docker-compose up --build
     <img src="https://skillicons.dev/icons?i=python,fastapi,nextjs,docker,redis,postgresjs" height="32px" />
   </a>
 </p>
-
----
