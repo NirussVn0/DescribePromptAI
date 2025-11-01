@@ -77,18 +77,9 @@ docker-compose up --build
 - [API Reference](docs/api.md)
 - [User Guide](docs/user-guide.md)
 - [Architecture Overview](docs/architecture.md)
-- [Deployment Checklist](docs/deployment.md)
 
 > Sample configs: [`backend/.env.example`](backend/.env.example), [`frontend/.env.example`](frontend/.env.example)
 
----
-
-
----
-
-
-
----
 
 ## 👨‍💻 Contributer
 
