@@ -4,7 +4,7 @@
 
 > **DescribePromptAI**  
 > Full-stack image-to-video prompt engineering  
-> **Backend:** FastAPI (Claude Vision, InsightFace, PostgreSQL, Redis, S3)  
+> **Backend:** FastAPI (Claude Vision, InsightFace, PostgreSQL, Redis, S3) and using UV to  managerment package
 > **Frontend:** Next.js 14, Zustand, theme toggle, export tools  
 > **Infra:** Docker Compose, Vercel/Render/Railway ready  
 > **Demo:** [depromptai.sabicoder.xyz](https://depromptai.sabicoder.xyz/)
@@ -58,7 +58,8 @@
 
 ```
 # 1. Install dependencies
-cd backend     &&    pip install -r requirements.txt
+cd backend     &&    uv sync
+# (optional) source .venv/bin/activate
 cd ../frontend &&    pnpm install
 
 # 2. Start services
@@ -91,6 +92,6 @@ docker-compose up --build
 
 <p align="center">
   <a href="https://sabicoder.xyz">
-    <img src="https://skillicons.dev/icons?i=python,fastapi,nextjs,docker,redis,postgresjs" height="32px" />
+    <img src="https://skillicons.dev/icons?i=python,fastapi,nextjs,tailwindcss,docker,redis,postgresjs,UV" height="32px" />
   </a>
 </p>

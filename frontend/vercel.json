@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "buildCommand": "npm install && npm run build",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://describe-prompt-ai-backend.example.com"
+  }
+}
